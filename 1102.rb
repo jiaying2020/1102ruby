@@ -87,8 +87,8 @@ p add_two.call(3) #call -> yield(2)
 #call是實體方法，內建yield
 
 add_a = Proc.new{|x|x + 2}
-add_b = Proc.lambda{|x|x + 2}
-add_b = Proc.proc{|x|x + 2}
+add_b = lambda { |n| n + 2 }
+add_b = proc { |n| n + 2 }
 
 #add_a 裡{|x|x + 2}只是寄生在new後面，無法單獨存在
 #lambda的目的是讓寄生蟲可以單獨存活
@@ -96,9 +96,9 @@ add_b = Proc.proc{|x|x + 2}
 #Lambda是方法，可以包物件，跟箭頭一樣
 #block無法單獨存在，所以被包在物件裡
 
-class Book < ApplicationRecord
-    scope cheap, -> { where("price <= 100") }
-    end
+# class Book < ApplicationRecord
+#     scope cheap, -> { where("price <= 100") }
+#     end
 #注意逗點，新手會忽略
 
 #以上都是proc的一種
@@ -109,8 +109,8 @@ add_two_proc = Proc.new { |n| n + 2 } #像方法
 p add_two_proc.call(1, 2, 3) #正常執⾏，印出 3。2,3被丟掉
 #因為絕對值裡面只有一個n，參數是一個蘿蔔一個坑
 
-add_two_lambda = lambda { |n| n + 2 }
-p add_two_lambda.call(1, 2, 3) # 發⽣生引數個數錯誤
+# add_two_lambda = lambda { |n| n + 2 }
+# p add_two_lambda.call(1, 2, 3) # 發⽣生引數個數錯誤
 
 def hello(a, *b)
 end
